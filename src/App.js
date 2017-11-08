@@ -13,9 +13,8 @@ class App extends Component {
 	}
 
 	getlocal() {
-		/*if (navigator.geolocation) {
-			return /*window.*/
-		/*navigator.geolocation.getCurrentPosition(
+		if (navigator.geolocation) {
+			return /*window.*/ navigator.geolocation.getCurrentPosition(
 				position => {
 					let lat = position.coords.latitude;
 					let longi = position.coords.longitude;
@@ -33,7 +32,7 @@ class App extends Component {
 			);
 		}
 
-		alert(`your browser doesn't support this`);/*/
+		alert(`your browser doesn't support this`);
 	}
 
 	render() {

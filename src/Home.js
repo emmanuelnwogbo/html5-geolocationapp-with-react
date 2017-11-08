@@ -3,6 +3,8 @@ import React, { Component } from "react";
 //import './Home.css';
 import { Link } from "react-router-dom";
 
+import Map from "./map";
+
 class Home extends Component {
 	constructor() {
 		super();
@@ -11,7 +13,11 @@ class Home extends Component {
 		};
 		this.watchPosition = this.watchPosition.bind(this);
 		this.stopWatching = this.stopWatching.bind(this);
-		this.geolocationFunc = this.geolocationFunc.bind(this);
+		this.num = this.num.bind(this);
+	}
+
+	num() {
+		console.log("hello");
 	}
 
 	watchPosition() {
@@ -29,7 +35,7 @@ class Home extends Component {
 			},
 			{
 				enableHighAccuracy: false,
-				timeout: 3000,
+				timeout: 1000,
 				maximumAge: 4000
 			}
 		);
@@ -41,19 +47,8 @@ class Home extends Component {
 		navigator.geolocation.clearWatch(this.state.watchId);
 	}
 
-	geolocationFunc() {
-		let latitude = 40.714728;
-		let longitude = -73.998672;
-		let latlong = `${latitude},${longitude}`;
-		let mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latlong}&zoom=15&size=600*500&maptype=roadmap&key=AIzaSyAPFqArGZlNnBsalEf3rW8JxbB3PBQWTH4`;
-		return (
-			<div>
-				<img src={mapUrl} alt="maps" />
-			</div>
-		);
-	}
-
 	render() {
+		console.log(this.num);
 		return (
 			<div>
 				<h1>THIS IS THE HOME ROUTE</h1>
@@ -62,9 +57,7 @@ class Home extends Component {
 				<Link to={"/test"}>go to the test page</Link>
 				<button onClick={this.watchPosition}>click to allow tracker</button>
 				<button onClick={this.stopWatching}>click to stop tracker</button>
-				<div id="staticmap" style={{ width: "600px", height: "500px " }}>
-					{this.geolocationFunc()}
-				</div>
+				<Map />
 			</div>
 		);
 	}
